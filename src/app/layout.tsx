@@ -1,11 +1,9 @@
-"use client";
-
 import "@/app/globals.css";
 import { Toaster } from "sonner";
 import { Providers } from "@/store/Providers";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
@@ -39,54 +37,4 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			</body>
 		</html>
 	);
-}
-
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Link from "next/link";
-import { Providers } from "@/store/Providers";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "eCommerce Shop",
-  description: "A simple eCommerce demo built with Next.js, Redux, Tailwind",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Providers>
-          <header className="border-b border-neutral-200 dark:border-neutral-800">
-            <div className="container flex h-14 items-center justify-between">
-              <nav className="flex items-center gap-4 text-sm">
-                <Link href="/" className="font-semibold">Shop</Link>
-                <Link href="/favorites" className="text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white">Favorites</Link>
-                <Link href="/products/create" className="text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white">Create</Link>
-              </nav>
-              <ThemeToggle />
-            </div>
-          </header>
-          <main className="container py-6">{children}</main>
-        </Providers>
-      </body>
-    </html>
-  );
 }
