@@ -31,35 +31,3 @@ export default function FavoritesPage() {
 		</div>
 	);
 }
-
-'use client';
-
-import Link from 'next/link';
-import { useAppSelector } from '@/store';
-import { ProductCard } from '@/components/ProductCard';
-
-export default function FavoritesPage() {
-	const items = useAppSelector((s) => Object.values(s.favorites.items));
-	return (
-		<div className="space-y-4">
-			<h1 className="text-2xl font-bold">Favorites</h1>
-			{items.length === 0 ? (
-				<p className="text-sm text-neutral-600 dark:text-neutral-400">
-					No favorites yet. Go back to{' '}
-					<Link href="/" className="text-blue-600 underline underline-offset-4">
-						Products
-					</Link>
-					.
-				</p>
-			) : (
-				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-					{items.map((p) => (
-						<ProductCard key={p.id} product={p} />
-					))}
-				</div>
-			)}
-		</div>
-	);
-}
-
-
